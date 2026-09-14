@@ -59,66 +59,64 @@ oxetech-supermercado/
 
 ## 🔗 4. Vinculação Obrigatória: Cartão Trello ↔ Issue GitHub (#ID)
 
-Cada cartão técnico no Trello está **estritamente vinculado a uma Issue no GitHub através do seu `#ID`**:
-* **Na Branch:** O nome da branch deve conter o ID da issue: `feature/issue-01-catalogo-produtos`.
-* **No Commit Inicial:** `git commit --allow-empty -m "chore: initialize branch for Issue #01"`.
-* **No Pull Request:** No corpo (descrição) da sua PR, escreva obrigatoriamente `Resolves #01` (ou `Closes #01`). Isso faz com que o GitHub vincule a PR à Issue correspondente e a feche automaticamente quando o merge for aprovado!
+Cada cartão técnico no Trello está **estritamente vinculado a uma Issue no GitHub através do seu número (#ID)**:
+* **Na Branch:** O nome da sua branch deve conter o ID da issue correspondente.
+* **No Pull Request:** Na descrição (corpo) da sua PR, escreva obrigatoriamente a palavra-chave **`Resolves #ID`** ou **`Closes #ID`** (ex: `Resolves #1`).
+* **Baixa Automática:** Quando o Scrum Master (@LuFelix) aprovar e fizer o merge do seu PR, o **GitHub fechará a Issue automaticamente** e registrará o histórico de entrega!
+
+### 📋 Tabela de Referência Rápida para Cada Desenvolvedor:
+
+| Desenvolvedor | Issue no GitHub | Comando para criar a Branch | Texto Obrigatório na Descrição do PR |
+| :--- | :--- | :--- | :--- |
+| **🧑‍💻 Dev 1** | [#1 Visualizar produtos](https://github.com/LuFelix/oxetech-supermercado/issues/1) | `git checkout -b feature/issue-01-catalogo-produtos` | `Resolves #1` |
+| **🧑‍💻 Dev 2** | [#2 Carrinho e cupons](https://github.com/LuFelix/oxetech-supermercado/issues/2) | `git checkout -b feature/issue-02-carrinho-compras` | `Resolves #2` |
+| **🎨 Dev 3** | [#3 Mapa de empatia](https://github.com/LuFelix/oxetech-supermercado/issues/3) | `git checkout -b feature/issue-03-design-thinking-empatia` | `Resolves #3` |
+| **🔍 Dev 4** | [#4 Agendamento e QA](https://github.com/LuFelix/oxetech-supermercado/issues/4) | `git checkout -b feature/issue-04-checkout-qa` | `Resolves #4` |
 
 ---
 
 ## 🌿 5. Protocolo de Branching e GitFlow (Padrão Ouro)
 
-> ⚠️ **REGRA ABSOLUTA:** Jamais comite diretamente nas branches `main` ou `develop`. Todo trabalho deve ser isolado na sua própria branch.
+> 🚫 **REGRA ABSOLUTA DE GOVERNANÇA:**
+> 1. **NUNCA faça commit ou push diretamente nas branches `main` ou `develop`!** (As branches possuem travas ativas de proteção).
+> 2. **Todo e qualquer trabalho deve ser feito na sua branch `feature/...`**.
+> 3. **Apenas o Scrum Master (@LuFelix) possui permissão para aprovar PRs e realizar o merge para a `develop`.**
 
-### Passo 1: Como iniciar sua tarefa no terminal
+---
+
+### 🛠️ Guia Passo a Passo de Execução:
+
+#### Passo 1: Como abrir sua branch a partir da `develop`
 ```bash
-# 1. Atualizar a develop local
+# 1. Certifique-se de estar na develop e com o código atualizado
 git checkout develop
 git pull origin develop
 
-# 2. Criar e acessar a branch da sua Issue (exemplo para o Dev 1):
+# 2. Crie e acesse a sua branch exclusiva (exemplo para o Dev 1):
 git checkout -b feature/issue-01-catalogo-produtos
 
-# 3. Fazer o primeiro commit inicial com a referência da Issue e enviar ao GitHub:
-git commit --allow-empty -m "chore: initialize branch for Issue #01"
+# 3. Faça um commit inicial para registrar a branch no GitHub:
+git commit --allow-empty -m "chore: initialize branch for Issue #1"
 git push -u origin feature/issue-01-catalogo-produtos
 ```
 
----
+#### Passo 2: Como abrir o Pull Request (PR)
+1. Acesse o repositório no GitHub: [https://github.com/LuFelix/oxetech-supermercado](https://github.com/LuFelix/oxetech-supermercado)
+2. Clique no botão verde **"Compare & pull request"** da sua branch (ou vá na aba *Pull Requests* -> *New pull request* selecionando `base: develop` e `compare: SUA-BRANCH`).
+3. No **Título**, coloque: `feat: [Nome da sua funcionalidade] (Issue #ID)`.
+4. No **Corpo do PR**, certifique-se de preencher `Resolves #ID` (ex: `Resolves #1`) para dar baixa automática na Issue.
+5. Marque o Scrum Master (**@LuFelix**) como revisor (ele já é configurado automaticamente via CODEOWNERS).
 
-### Passo 2: Como abrir o Pull Request (PR)
-
-Você pode abrir a sua PR de duas formas:
-
-#### 🌐 Opção A: Pela Interface Web do GitHub (Mais Fácil e Recomendada)
-1. Acesse a página do repositório no seu navegador no GitHub.
-2. Você verá um banner amarelo no topo com o nome da sua branch recente. Clique no botão verde **"Compare & pull request"**.
-   *(Caso não veja o banner, vá na aba **Pull Requests** e clique no botão verde **New pull request**, escolhendo `base: develop` e `compare: feature/SUA-FEATURE`).*
-3. No campo **Título**, digite: `WIP: [Nome da sua tarefa]`.
-4. No botão verde de envio, clique na setinha para baixo e escolha **"Create draft pull request"** (para indicar que o trabalho está em andamento).
-5. Quando terminar de codificar e fizer o `git push` final, volte na página da sua PR no GitHub e clique no botão **"Ready for review"**.
-
-#### 💻 Opção B: Pelo Terminal (Via GitHub CLI `gh`)
-```bash
-# Criar PR como rascunho (Draft)
-gh pr create --draft --title "WIP: Nome da sua tarefa" --body "Resolves Issue"
-
-# Marcar como pronta para revisão quando terminar
-gh pr ready
-```
-
----
-
-### Passo 3: Como finalizar suas alterações
+#### Passo 3: Como commitar e enviar suas alterações
 ```bash
 # 1. Adicionar os arquivos modificados e commitar
 git add .
-git commit -m "feat(modulo): implementa funcionalidade. closes #ID"
+git commit -m "feat: implementa funcionalidade da issue. closes #ID"
 
-# 2. Enviar para a sua branch remota
-git push origin feature/SUA-FEATURE
+# 2. Enviar suas alterações para o GitHub
+git push origin feature/SUA-BRANCH
 
-# 3. No Trello: Mova seu cartão para a coluna "Revisão de Código / QA".
+# 3. No Trello: Mova seu cartão para a coluna "Revisão de Código / QA" e aguarde a revisão do Scrum Master!
 ```
 
 ---
