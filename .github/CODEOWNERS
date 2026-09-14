@@ -1,0 +1,7 @@
+# ==============================================================================
+# GESTÃO DE REVISÃO E APROVAÇÃO OBRIGATÓRIA (CODEOWNERS)
+# Define que Luciano Felix (@LuFelix) é o revisor e aprovador obrigatório
+# de qualquer arquivo e Pull Request no repositório.
+# ==============================================================================
+
+* @LuFelix

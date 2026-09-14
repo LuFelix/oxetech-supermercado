@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Supermercado Express G1 — Protótipo Navegável (Sprint Inovação)</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- CABEÇALHO -->
+  <header>
+    <div class="brand">
+      <h1>🛒 Supermercado Express</h1>
+      <span class="badge-sprint">G1 — Sprint Inovação</span>
+    </div>
+    <div class="header-actions">
+      <button class="cart-btn" onclick="openCart()">
+        <span>Meu Carrinho</span>
+        <span class="cart-count" id="header-cart-count">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main>
+    <!-- HERO BANNER (INOVAÇÃO EM 1 CLIQUE) -->
+    <div class="hero-banner">
+      <div class="hero-text">
+        <h2>⚡ Cesta Essencial do Mês</h2>
+        <p>Economize 40 minutos. Adicione os 6 itens básicos da sua dispensa em um único clique!</p>
+      </div>
+      <button class="btn-quick-basket" onclick="addQuickBasket()">
+        <span>➕ Adicionar Cesta Completa</span>
+      </button>
+    </div>
+
+    <!-- VITRINE DE PRODUTOS ESSENCIAIS (DEV 1 - js/products.js) -->
+    <h3 class="section-title">📦 Produtos Essenciais da Semana</h3>
+    <div class="products-grid" id="products-grid">
+      <!-- Produtos renderizados dinamicamente via js/products.js -->
+    </div>
+  </main>
+
+  <!-- OVERLAY E GAVETA DO CARRINHO (DEV 2 - js/cart.js) -->
+  <div class="drawer-overlay" id="drawer-overlay" onclick="closeCart()"></div>
+  <div class="cart-drawer" id="cart-drawer">
+    <div class="drawer-header">
+      <h3>🛒 Meu Carrinho de Compras</h3>
+      <button class="btn-close" onclick="closeCart()">&times;</button>
+    </div>
+
+    <div class="cart-items" id="cart-items-container">
+      <!-- Itens renderizados dinamicamente via js/cart.js -->
+    </div>
+
+    <div class="drawer-footer" id="drawer-footer" style="display: none;">
+      <!-- CAMPO DE CUPOM (DEV 2) -->
+      <div style="margin-bottom: 12px; display: flex; gap: 8px;">
+        <input type="text" id="coupon-code" placeholder="Cupom (ex: PRIMEIRACOMPRA)" style="flex: 1; padding: 6px 8px; border: 1px solid var(--border); border-radius: 4px; font-size: 0.85rem; text-transform: uppercase;">
+        <button onclick="applyCoupon()" style="background: var(--primary); color: white; border: none; padding: 6px 12px; border-radius: 4px; font-weight: 700; font-size: 0.85rem; cursor: pointer;">Aplicar</button>
+      </div>
+      <div id="coupon-msg" style="font-size: 0.75rem; margin-top: -6px; margin-bottom: 8px; font-weight: 600;"></div>
+
+      <div class="summary-row">
+        <span>Subtotal dos Produtos:</span>
+        <strong id="summary-subtotal">R$ 0,00</strong>
+      </div>
+      <div class="summary-row">
+        <span>Taxa de Entrega:</span>
+        <strong id="summary-shipping" style="color: var(--success);">Grátis</strong>
+      </div>
+      <div class="summary-total">
+        <span>Valor Total:</span>
+        <strong id="summary-total">R$ 0,00</strong>
+      </div>
+      <button class="btn-checkout" onclick="openCheckoutModal()">
+        Avançar para Entrega & Pagamento ➔
+      </button>
+    </div>
+  </div>
+
+  <!-- MODAL DE CHECKOUT / JANELA DE ENTREGA (DEV 4 - js/checkout.js) -->
+  <div class="modal" id="checkout-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>📅 Agendamento & Checkout</h3>
+        <button class="btn-close" style="color: #000;" onclick="closeCheckoutModal()">&times;</button>
+      </div>
+
+      <div class="form-group">
+        <label>📍 Endereço de Entrega:</label>
+        <input type="text" id="delivery-address" value="Av. Central, 450 - Apto 302" style="width: 100%; padding: 8px; border: 1px solid var(--border); border-radius: 6px;">
+      </div>
+
+      <div class="form-group">
+        <label>⏰ Escolha a Janela de Horário (Hoje):</label>
+        <div class="delivery-slots">
+          <div class="slot-btn active" onclick="selectSlot(this, 'Manhã (08h às 12h)')">
+            ☀️ Manhã<br><small>08h - 12h</small>
+          </div>
+          <div class="slot-btn" onclick="selectSlot(this, 'Tarde (13h às 17h)')">
+            🌤️ Tarde<br><small>13h - 17h</small>
+          </div>
+          <div class="slot-btn" onclick="selectSlot(this, 'Noite (18h às 21h)')">
+            🌙 Noite<br><small>18h - 21h</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>💳 Forma de Pagamento:</label>
+        <div class="payment-options">
+          <label class="payment-option">
+            <input type="radio" name="payment" value="Pix Instantâneo" checked>
+            <span>⚡ Pix (Aprovação Imediata)</span>
+          </label>
+          <label class="payment-option">
+            <input type="radio" name="payment" value="Cartão de Crédito na Entrega">
+            <span>💳 Cartão na Entrega (Maquininha)</span>
+          </label>
+        </div>
+      </div>
+
+      <button class="btn-confirm-order" onclick="confirmOrder()">
+        ✅ Confirmar Pedido (<span id="modal-order-total">R$ 0,00</span>)
+      </button>
+    </div>
+  </div>
+
+  <!-- MODAL DE SUCESSO DO PEDIDO (DEV 4) -->
+  <div class="modal" id="success-modal">
+    <div class="modal-content success-modal">
+      <div class="success-icon">🎉</div>
+      <h2 style="color: var(--primary); margin-bottom: 6px;">Pedido Confirmado!</h2>
+      <p style="color: var(--text-muted);">Sua compra foi enviada para separação com regras de substituição ativas.</p>
+
+      <div class="order-details-box">
+        <p><strong>Número do Pedido:</strong> <span id="success-order-id">#G1-1089</span></p>
+        <p><strong>Horário Agendado:</strong> <span id="success-slot">Manhã (08h às 12h)</span></p>
+        <p><strong>Forma de Pagamento:</strong> <span id="success-payment">Pix Instantâneo</span></p>
+        <p><strong>Total Pago:</strong> <strong id="success-total" style="color: var(--primary);">R$ 0,00</strong></p>
+      </div>
+
+      <button class="btn-confirm-order" onclick="resetDemo()">
+        🔄 Fazer Novo Pedido (Reiniciar Demonstração)
+      </button>
+    </div>
+  </div>
+
+  <!-- SCRIPTS MODULARES (ISOLADOS POR DEV — ZERO CONFLITOS DE MERGE) -->
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/checkout.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
