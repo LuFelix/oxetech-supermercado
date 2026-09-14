@@ -2,8 +2,9 @@
 
 > **Projeto Integrador / Simulação de Sprint de Inovação (AV2)**  
 > **Disciplina:** Modelos de Desenvolvimento de Software  
-> **Líder / Scrum Master:** Luciano Felix  
+> **Líder / Scrum Master:** Luciano Felix (@LuFelix)  
 > **Metodologia:** Design Thinking integrado ao SCRUM & Kanban  
+> **Repositório GitHub Oficial:** [LuFelix/oxetech-supermercado](https://github.com/LuFelix/oxetech-supermercado)  
 > **Quadro Trello Oficial:** [G1 - Supermercado Express (Sprint Inovação)](https://trello.com/b/dipdw1CF/g1-supermercado-express-sprint-inova%C3%A7%C3%A3o)
 
 ---
