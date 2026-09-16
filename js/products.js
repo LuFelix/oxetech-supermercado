@@ -7,15 +7,9 @@ const products = [
   { id: 1, name: "Arroz Tipo 1 Camil", unit: "Pacote 5kg", price: 28.90, stock: 5, icon: "🌾" },
   { id: 2, name: "Feijão Carioca Kicaldo", unit: "Pacote 1kg", price: 8.50, stock: 3, icon: "🫘" },
   { id: 3, name: "Leite Integral Parmalat", unit: "Caixa 1L", price: 5.80, stock: 4, icon: "🥛" },
-  { id: 4, name: "Café Torrado Pilão", unit: "Pacote 500g", price: 18.90, stock: 4, icon: "☕" }
-  
-  // ========================================================================
-  // 🎯 TAREFA DO DEV 1 (Issue #01):
-  // 1. Descomente e adicione os 2 novos produtos abaixo com o campo stock:
-  //
-  // , { id: 5, name: "Óleo de Soja Liza", unit: "Garrafa 900ml", price: 7.20, stock: 4, icon: "🌻" }
-  // , { id: 6, name: "Açúcar Refinado União", unit: "Pacote 1kg", price: 4.60, stock: 5, icon: "🍬" }
-  // ========================================================================
+  { id: 4, name: "Café Torrado Pilão", unit: "Pacote 500g", price: 18.90, stock: 4, icon: "☕" },
+  { id: 5, name: "Óleo de Soja Liza", unit: "Garrafa 900ml", price: 7.20, stock: 4, icon: "🌻" },
+  { id: 6, name: "Açúcar Refinado União", unit: "Pacote 1kg", price: 4.60, stock: 5, icon: "🍬" }
 ];
 
 // Calcular estoque disponível em tempo real
