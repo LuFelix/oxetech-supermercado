@@ -36,6 +36,7 @@ oxetech-supermercado/
 │   ├── products.js   <──────── 🧑‍💻 DEV 1 (Vitrine & Catálogo de Produtos)
 │   ├── cart.js       <──────── 🧑‍💻 DEV 2 (Lógica do Carrinho, Totais & Cupom)
 │   ├── checkout.js   <──────── 🔍 DEV 4 (Agendamento, Pagamento & Checkout)
+│   ├── hotfix.js     <──────── 🚨 DEV EXPEDITE (Proteção & Hotfix de Crise)
 │   └── app.js                   (Inicializador / Orquestrador principal)
 └── docs/
     └── mapa-empatia.md <─────── 🎨 DEV 3 (Mapa de Empatia & Design Thinking)
@@ -54,6 +55,7 @@ oxetech-supermercado/
 | **Dev 2** | **Lógica (Carrinho, Estoque & Cupons)** | 📄 `js/cart.js` | Implementar validação de estoque com `alert()` ao zerar e regras de cupons em `if/else` (**R$ 10** com `PRIMEIRACOMPRA`, **10%** com `SUPER10`, **15%** com `SUPER15`) | `feature/issue-02-carrinho-compras` | **Issue #02** |
 | **Dev 3** | **UX (Design Thinking)** | 📄 `docs/mapa-empatia.md` | Montar o **desenho gráfico do Mapa de Empatia** (no Canva/Miro/Figma) e salvar a imagem/PDF na pasta `docs/` | `feature/issue-03-design-thinking-empatia` | **Issue #03** |
 | **Dev 4** | **QA (Checkout & Testes)**| 📄 `js/checkout.js` | Conduzir a bateria de testes de aceitação (QA), testando limites de estoque e cupons sem erros | `feature/issue-04-checkout-qa` | **Issue #04** |
+| **Dev Expedite** | **Hotfix (Gestão de Crise)** | 📄 `js/hotfix.js` | Implementar validação preventiva de carrinho vazio no checkout com `alert()` e selo de auditoria | `hotfix/expedite-checkout-vazio` | **Issue #09** |
 
 ---
 
@@ -72,6 +74,7 @@ Cada cartão técnico no Trello está **estritamente vinculado a uma Issue no Gi
 | **🧑‍💻 Dev 2** | [#2 Carrinho e cupons](https://github.com/LuFelix/oxetech-supermercado/issues/2) | `git checkout -b feature/issue-02-carrinho-compras` | `Resolves #2` |
 | **🎨 Dev 3** | [#3 Mapa de empatia](https://github.com/LuFelix/oxetech-supermercado/issues/3) | `git checkout -b feature/issue-03-design-thinking-empatia` | `Resolves #3` |
 | **🔍 Dev 4** | [#4 Agendamento e QA](https://github.com/LuFelix/oxetech-supermercado/issues/4) | `git checkout -b feature/issue-04-checkout-qa` | `Resolves #4` |
+| **🚨 Dev Expedite** | [#9 Hotfix Checkout Vazio](https://github.com/LuFelix/oxetech-supermercado/issues/9) | `git checkout -b hotfix/expedite-checkout-vazio` | `Resolves #9` |
 
 ---
 
