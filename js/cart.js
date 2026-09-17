@@ -86,7 +86,7 @@ function changeQty(productId, delta) {
   // Ao clicar no botão (+), valide se o estoque já atingiu o limite máximo.
   // Descomente o bloco abaixo para ativar:
   // ========================================================================
-  /*
+  
   if (delta > 0 && prod) {
     const available = getAvailableStock(productId);
     if (available <= 0) {
@@ -94,7 +94,7 @@ function changeQty(productId, delta) {
       return;
     }
   }
-  */
+  
 
   item.qty += delta;
   if (item.qty <= 0) {
@@ -129,7 +129,7 @@ function applyCoupon() {
   const code = couponInput.value.trim().toUpperCase();
   const subtotal = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
 
-  /*
+  
   if (code === "PRIMEIRACOMPRA") {
     discountType = "fixed";
     discountValue = 10.00;
@@ -159,7 +159,7 @@ function applyCoupon() {
       couponMsg.style.color = "var(--danger)";
     }
   }
-  */
+  
 
   updateCartUI();
 }
