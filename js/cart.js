@@ -19,13 +19,11 @@ function addToCart(productId) {
   //
   // Descomente o bloco abaixo para ativar a proteção:
   // ========================================================================
-  /*
   const available = getAvailableStock(productId);
   if (available <= 0) {
     alert(`⚠️ Estoque esgotado para o produto "${prod.name}"!\nQuantidade máxima de ${prod.stock} unidades já atingida no carrinho.`);
     return; // Bloqueia a adição
   }
-  */
 
   const existing = cart.find(item => item.id === productId);
   if (existing) {
