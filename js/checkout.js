@@ -24,12 +24,6 @@ function closeCheckoutModal() {
 // 3. Atualiza a variável global `selectedSlot` com o horário escolhido.
 // ==========================================================================
 function selectSlot(btn, slotName) {
-  /*
-  document.querySelectorAll(".slot-btn").forEach(b => b.classList.remove("active"));
-  btn.classList.add("active");
-  selectedSlot = slotName;
-  */
-  // Linhas ativas padrão:
   document.querySelectorAll(".slot-btn").forEach(b => b.classList.remove("active"));
   btn.classList.add("active");
   selectedSlot = slotName;
